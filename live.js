@@ -1,11 +1,17 @@
 $(function () {
     
-    function displayTagsCloud(listStr, subTitle) {
+    function displayTweetsCount(list) {
+        var countMap = _.map(list, function(tag){ return tag[1]; });
+        var count = _.reduce(countMap, function(memo, num){ return memo + num; }, 0);
+        $("#compteur").text(count+" tweets #mixit16");
+    }
+
+    function displayTagsCloud(list, subTitle) {
+        
+        displayTweetsCount(list);
         
         $("#subtitle").text(subTitle);
         
-        var list = JSON.parse(listStr);
-
         var max = _.max(list, function(tag){ return tag[1]; })[1];
 
         var options = {
@@ -27,8 +33,8 @@ $(function () {
     };
     
     function reloadTwits() {
-        $.get( "twits.txt", function( listStr ) {
-            displayTagsCloud(listStr, "Les mots");
+        $.getJSON( "twits.txt", function( list ) {
+            displayTagsCloud(list, "Les mots");
         });
     }
 
