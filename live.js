@@ -10,8 +10,6 @@ $(function () {
         
         displayTweetsCount(list);
         
-        $("#subtitle").text(subTitle);
-        
         var max = _.max(list, function(tag){ return tag[1]; })[1];
 
         var options = {
