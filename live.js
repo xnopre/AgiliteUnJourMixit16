@@ -26,32 +26,14 @@ $(function () {
         WordCloud('tags', options);
     };
     
-    function reloadTwittos() {
-        $.get( "twittos.txt", function( listStr ) {
-
-            var list = JSON.parse(listStr);
-                        
-            var countMap = _.map(list, function(tag){ return tag[1]; });
-            var count = _.reduce(countMap, function(memo, num){ return memo + num; }, 0);
-        
-            $("#compteur").text(count+" tweets #ag15");
-            
-            displayTagsCloud(listStr, "Les auteurs");
-        });
-    }
-
     function reloadTwits() {
         $.get( "twits.txt", function( listStr ) {
             displayTagsCloud(listStr, "Les mots");
         });
     }
 
-    window.setInterval(reloadTwittos, 30000);
+    window.setInterval(reloadTwits, 15000);
     
-    window.setTimeout(function() {
-        window.setInterval(reloadTwits, 15000);        
-        reloadTwits();
-    }, 5000);
-
-    reloadTwittos();
+    reloadTwits();
+    
 });
