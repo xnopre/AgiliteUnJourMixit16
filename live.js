@@ -6,7 +6,7 @@ $(function () {
         $("#compteur").text(count+" tweets #mixit16");
     }
 
-    function displayTagsCloud(list, subTitle) {
+    function displayTagsCloud(list) {
         
         displayTweetsCount(list);
         
@@ -32,7 +32,7 @@ $(function () {
     
     function reloadTwits() {
         $.getJSON( "twits.txt", function( list ) {
-            displayTagsCloud(list, "Les mots");
+            displayTagsCloud(list);
         });
     }
 
