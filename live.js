@@ -1,16 +1,6 @@
 $(function () {
     
-    function displayTweetsCount(list) {
-        var countMap = _.map(list, function(tag){ return tag[1]; });
-        var count = _.reduce(countMap, function(memo, num){ return memo + num; }, 0);
-        $("#compteur").text(count+" tweets #mixit16");
-    }
-
-    function displayTagsCloud(list, subTitle) {
-        
-        displayTweetsCount(list);
-        
-        $("#subtitle").text(subTitle);
+    function displayTagsCloud(list) {
         
         var max = _.max(list, function(tag){ return tag[1]; })[1];
 
@@ -34,7 +24,7 @@ $(function () {
     
     function reloadTwits() {
         $.getJSON( "twits.txt", function( list ) {
-            displayTagsCloud(list, "Les mots");
+            displayTagsCloud(list);
         });
     }
 
